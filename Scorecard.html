@@ -1,0 +1,162 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Score Card</title>
+        <style>
+            body
+            {
+                background: url('F:/Movgame_wallp/photo-1540747913346-19e32dc3e97e.jpg');
+                background-repeat: no repeat;
+                background-position: center;
+                background-size: cover;
+            }
+            #first
+            {
+                width: 25%;
+                border: 2px solid #fff;
+                border-radius: 10px;
+                text-align: center;
+                color: #fff;
+                background: rgba(0,0,0,0.25);
+                margin: 0 35%;
+            }
+            #card
+            {
+                width: 35%;
+                border: 2px solid #fff;
+                border-radius: 10px;
+                text-align: center;
+                color: #fff;
+                background: rgba(0,0,0,0.5);
+                margin: 3% 30%;
+            }
+            table
+            {
+                color: #fff;
+                width: 80%;
+                margin: 2% 10%;
+            }
+            #btndiv
+            {
+                text-align: center;
+            }
+            #btndiv button
+            {
+                width: 200px;
+                height: 40px;
+                font-size: 25px;
+                margin: 2% auto;
+                color: #fff;
+                background: #de4935;
+                border: 3px solid rgb(25,234,56);
+            }
+        </style>
+       <script>
+            function updateScore(clickedBtn)
+            {
+                let curScore=document.getElementById('runs').innerHTML;
+                let curRun=clickedBtn.innerHTML;
+                if(curRun == 'Wide')
+                {
+                    console.log("Wide");
+                    curScore=Number(curScore);
+                    curScore++;
+                    document.getElementById('runs').innerHTML=curScore;
+                 }
+               else if(curRun == 'No ball')
+               {
+                console.log("No Ball");
+                curScore=Number(curScore);
+                    curScore++;
+                    document.getElementById('runs').innerHTML=curScore;
+               }
+               else if(curRun == 'Wicket')
+               {
+                console.log("Wicket");
+                let curWickets=document.getElementById('wickets').innerHTML;
+                curWickets=Number(curWickets);
+                curWickets++;
+
+                document.getElementById('wickets').innerHTML=curWickets;
+                if(curWickets==10)
+               {
+                    document.getElementById('wickets').style.display='none';
+                }
+                updateOver();
+
+               }
+               else
+               {
+               console.log('currenyt ball run ='+curRun);
+               let curScore = document.getElementById('runs').innerHTML;
+               console.log('current score of team ='+curScore);
+
+               curScore=(Number(curScore) + Number(curRun));
+               console.log('Total score = '+curScore);
+               document.getElementById('runs').innerHTML=curScore;
+               updateOver();
+               showThisOver(curRun)
+               }
+            }
+            let ballIndex =0;
+            function updateOver()
+            {
+                let curBall=document.getElementById('balls').innerHTML;
+                let curOver=document.getElementById('overs').innerHTML;
+                curBall=Number(curBall);
+                curOver=Number(curOver);
+                curBall++;
+                if(curBall > 5)
+                {
+                    curOver++;
+                    curBall = 0;
+                }
+                document.getElementById('balls').innerHTML=curBall;
+                document.getElementById('overs').innerHTML=curOver;
+                
+            }
+            function showThisOver(curRun)
+            {
+                let thisOver =document.getElementsByTagName('th');
+                thisOver[ballIndex].innerHTML=curRun;
+                ballIndex++;
+                if(ballIndex >5 )
+                {
+                    ballIndex=0;
+                }
+            }
+        </script>-->
+    </head>
+    <body>
+        <h1 id="first">Score card</h1>
+        <div id="card">
+            <h1><span id="runs">0</span>-<span id="wickets">0</span></h1>
+            <h3><span id="overs">0</span>.<span id="balls">0</span></h3>
+            <table border="2">
+                <caption>This Over</caption>
+                <tr>
+                    <th>.</th>
+                    <th>.</th>
+                    <th>.</th>
+                    <th>.</th>
+                    <th>.</th>
+                    <th>.</th>
+                </tr>
+            </table>
+        </div>
+        <div id="btndiv">
+            <button onclick="updateScore(this)">0</button>
+            <button onclick="updateScore(this)">1</button>
+            <button onclick="updateScore(this)">2</button>
+            <button onclick="updateScore(this)">3</button>
+            <button onclick="updateScore(this)">4</button>
+            <button onclick="updateScore(this)">5</button>
+            <button onclick="updateScore(this)">6</button>
+            <button onclick="updateScore(this)">Wide</button>
+            <button onclick="updateScore(this)">No ball</button>
+            <button onclick="updateScore(this)">Wicket</button>
+        </div>  
+    </body>
+
+    <script src="ScoreCardScript.js"></script>
+</html>
